@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<accounts>
+    <account>
+        <from_username>epam.test.email.from</from_username>
+        <from_password>Epam@test1</from_password>
+        <to_username>epam.test.email.to</to_username>
+        <to_password>Epam@test1</to_password>
+    </account>
+</accounts>
