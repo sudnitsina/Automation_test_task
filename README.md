@@ -22,3 +22,14 @@ Test execution info can be found in /logs:
 - pytest.log (detailed log)
 - result.log (execution result)
 - screenshots
+
+### Comment:
+
+Sometimes google return 405 after redirection. It's possible to avoid it using additional timeout. Uncomment lines:
+```sh
+2 # import time
+...
+39 # time.sleep(1)  # sleep to avoid 405 response
+...
+77 # time.sleep(1)   # sleep to avoid 405 response
+```
