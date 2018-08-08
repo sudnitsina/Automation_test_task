@@ -13,7 +13,7 @@ pip install -r requrements.txt
 ```
 Data for tests should be provided in files (specify type and path in config.py: csv, xml or sqlite)
 
-##Run test
+## Run test
 ```sh
 py.test --resultlog=logs/result.log tests.py
 ```
