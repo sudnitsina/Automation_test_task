@@ -3,7 +3,8 @@ import sqlite3
 import xml.etree.ElementTree as ET
 
 from config import STORAGE, FILE
-
+import random
+import string
 
 def get_test_data():
     """
@@ -34,3 +35,7 @@ def get_test_data():
     else:
         raise ValueError('Invalid data type. Specify correct STORAGE in settings.py')
     return test_data
+
+
+def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
