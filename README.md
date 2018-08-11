@@ -29,7 +29,7 @@ Sometimes google return 405 after redirection. It's possible to avoid it using a
 ```sh
 2 # import time
 ...
-39 # time.sleep(1)  # sleep to avoid 405 response
+40 # time.sleep(1)  # sleep to avoid 405 response
 ...
-77 # time.sleep(1)   # sleep to avoid 405 response
+78 # time.sleep(1)   # sleep to avoid 405 response
 ```

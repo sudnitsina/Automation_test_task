@@ -6,7 +6,8 @@ import pytest
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.webdriver import WebDriver
 
-from page_model.login_page import LoginPage, MailPage
+from page_model.login_page import LoginPage
+from page_model.mail_page import MailPage
 from utils import get_test_data
 
 logging.basicConfig(filename="logs/pytest.log", level=logging.INFO)
