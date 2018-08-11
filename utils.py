@@ -1,10 +1,11 @@
 import csv
+import random
 import sqlite3
+import string
 import xml.etree.ElementTree as ET
 
 from config import STORAGE, FILE
-import random
-import string
+
 
 def get_test_data():
     """

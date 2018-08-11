@@ -1,18 +1,16 @@
-from .base_page import BasePage
-from utils import random_string_generator
-from selenium.webdriver.support.ui import WebDriverWait
-import os
 import logging
-from locators.mail_page import MailPageLocators
+import os
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from locators.mail_page import MailPageLocators
+from utils import random_string_generator
+from .base_page import BasePage
 
 
 class MailPage(BasePage):
-    @property
-    def url(self):
-        return "https://mail.google.com"
-
     @property
     def new_mail_button(self):
         return self.get_element_or_screenshot(MailPageLocators.NEW_MAIL_BUTTON)

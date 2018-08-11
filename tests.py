@@ -18,9 +18,22 @@ class TestGmail:
     Check that email can be sent and received using gmail service
 
     """
+    def login(self, username, password):
+        "Login scenario implementation"
+        gmail_url = "https://mail.google.com/"
+        logging.info("Opening {}".format(gmail_url))
+
+        page = LoginPage(self.driver)
+        self.driver.get(page.url)
+        logging.info("Inserting username")
+        page.username.send_keys(username, Keys.RETURN)
+        # time.sleep(1)  # sleep to avoid 405 response
+        logging.info("Inserting password")
+        page.password.send_keys(password, Keys.RETURN)
+
     @pytest.mark.parametrize("from_username, from_password, to_username, to_password", get_test_data())
     def test_mail(self, from_username, from_password, to_username, to_password):
-        gmail_url = "https://mail.google.com/"
+        "Test mail sending using the data file specified in config.py"
         logging.getLogger(__name__)
         logging.info(
             "TestGmail started for the dataset: {}".format((from_username, from_password, to_username, to_password)))
@@ -32,14 +45,8 @@ class TestGmail:
         self.driver = WebDriver()
         browser = self.driver.desired_capabilities["browserName"]
         mail_text = "{}-{}".format(browser, today)
-        logging.info("Opening {}".format(gmail_url))
-        self.driver.get(gmail_url)
-        page = LoginPage(self.driver)
-        logging.info("Inserting username")
-        page.username.send_keys(from_username, Keys.RETURN)
-        # time.sleep(1)  # sleep to avoid 405 response
-        logging.info("Inserting password")
-        page.password.send_keys(from_password, Keys.RETURN)
+        self.login(from_username, from_password)
+
 
         # send mail
         page = MailPage(self.driver)
@@ -70,14 +77,7 @@ class TestGmail:
 
         # login to second account
         self.driver = WebDriver()
-        logging.info("Opening {}".format(gmail_url))
-        self.driver.get(gmail_url)
-        page = LoginPage(self.driver)
-        logging.info("Inserting username")
-        page.username.send_keys(to_username, Keys.RETURN)
-        # time.sleep(1)   # sleep to avoid 405 response
-        logging.info("Inserting password")
-        page.password.send_keys(to_password, Keys.RETURN)
+        self.login(to_username, to_password)
         page = MailPage(self.driver)
 
         logging.info("Opening email")

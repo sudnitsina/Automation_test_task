@@ -5,10 +5,6 @@ from .base_page import BasePage
 
 class LoginPage(BasePage):
     @property
-    def url(self):
-        return "https://accounts.google.com/"
-
-    @property
     def username(self):
         return self.get_element_or_screenshot(LoginPageLocators.USERNAME_FIELD)
 

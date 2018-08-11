@@ -9,6 +9,10 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
+    @property
+    def url(self):
+        return "https://mail.google.com"
+
     def get_element_or_screenshot(self, locator):
         try:
             element = WebDriverWait(self.driver, 10).until(

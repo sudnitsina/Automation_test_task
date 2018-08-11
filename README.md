@@ -27,9 +27,7 @@ Test execution info can be found in /logs:
 
 Sometimes google return 405 after redirection. It's possible to avoid it using additional timeout. Uncomment lines:
 ```sh
-2 # import time
+2  # import time
 ...
-40 # time.sleep(1)  # sleep to avoid 405 response
+29 # time.sleep(1)  # sleep to avoid 405 response
 ...
-78 # time.sleep(1)   # sleep to avoid 405 response
-```
