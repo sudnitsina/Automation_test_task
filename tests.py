@@ -5,6 +5,7 @@ from datetime import datetime
 import pytest
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium.webdriver.firefox.options import Options
 
 from page_model.login_page import LoginPage
 from page_model.mail_page import MailPage
@@ -41,8 +42,11 @@ class TestGmail:
         today = datetime.today()
         from_email = "{}@gmail.com".format(from_username)
         to_email = "{}@gmail.com".format(to_username)
-    
-        self.driver = WebDriver()
+
+        options = Options()
+        options.add_argument("--headless")
+
+        self.driver = WebDriver(firefox_options=options)
         browser = self.driver.desired_capabilities["browserName"]
         mail_text = "{}-{}".format(browser, today)
         self.login(from_username, from_password)
