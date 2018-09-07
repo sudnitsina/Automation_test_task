@@ -1,5 +1,5 @@
 import logging
-# import time
+import time
 from datetime import datetime
 
 import pytest
@@ -28,7 +28,7 @@ class TestGmail:
         self.driver.get(page.url)
         logging.info("Inserting username")
         page.username.send_keys(username, Keys.RETURN)
-        # time.sleep(1)  # sleep to avoid 405 response
+        time.sleep(1)  # sleep to avoid 405 response
         logging.info("Inserting password")
         page.password.send_keys(password, Keys.RETURN)
 
