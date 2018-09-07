@@ -1,8 +1,7 @@
-from utils import random_string_generator
-from selenium.webdriver.support.ui import WebDriverWait
-import os
-import logging
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from utils import get_screenshot
 
 
 class BasePage:
@@ -20,8 +19,4 @@ class BasePage:
             )
             return element
         except:
-            file_path = os.path.join(os.getcwd(), "logs", "screenshots",
-                                     "{}.png".format(random_string_generator(size=5)))
-            self.driver.save_screenshot(file_path)
-            logging.error(
-                "Element can't be located. Check screenshot for details: {}".format(file_path))
+            get_screenshot(self.driver)
