@@ -3,9 +3,11 @@ import random
 import sqlite3
 import string
 import xml.etree.ElementTree as ET
-
+import requests
 from config import STORAGE, FILE
-
+import logging
+import os
+import json
 
 def get_test_data():
     """
@@ -40,3 +42,22 @@ def get_test_data():
 
 def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
+
+def get_screenshot(driver):
+    file_path = os.path.join(os.getcwd(), "logs", "screenshots",
+                             "{}.png".format(random_string_generator(size=5)))
+    driver.save_screenshot(file_path)
+    file_link = img_uploader(file_path)
+    logging.error(
+        "Element can't be located. Check screenshot for details: {}".format(file_link))
+
+def img_uploader(img_path):
+    url = "http://uploads.ru/api?upload"
+    file = {"file": open(img_path, "rb")}
+    my_session = requests.Session()
+    log = my_session.post(url, files=file)
+    log = json.loads(log.text)
+    if log["status_code"] == 200:
+        return log["data"]["img_url"]
+    return "Screenshot loading failed"
+
