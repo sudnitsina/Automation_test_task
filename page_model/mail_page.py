@@ -1,12 +1,9 @@
-import logging
-import os
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from locators.mail_page import MailPageLocators
-from utils import random_string_generator
+from utils import get_screenshot
 from .base_page import BasePage
 
 
@@ -61,9 +58,6 @@ class MailPage(BasePage):
             )
             return True
         except:
-            file_path = os.path.join(os.getcwd(), "logs", "screenshots",
-                                     "{}.png".format(random_string_generator(size=5)))
-            self.driver.save_screenshot(file_path)
-            logging.error(
-                "Element can't be located. Check screenshot for details: {}".format(file_path))
+            get_screenshot(self.driver)
             return False
+
