@@ -9,6 +9,7 @@ import logging
 import os
 import json
 
+
 def get_test_data():
     """
     Return list of values from the file specified in config.py
@@ -43,6 +44,7 @@ def get_test_data():
 def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
+
 def get_screenshot(driver):
     file_path = os.path.join(os.getcwd(), "logs", "screenshots",
                              "{}.png".format(random_string_generator(size=5)))
@@ -51,13 +53,11 @@ def get_screenshot(driver):
     logging.error(
         "Element can't be located. Check screenshot for details: {}".format(file_link))
 
+    
 def img_uploader(img_path):
-    url = "http://uploads.ru/api?upload"
+    url = os.environ.get("upload_api")
     file = {"file": open(img_path, "rb")}
     my_session = requests.Session()
-    log = my_session.post(url, files=file)
-    log = json.loads(log.text)
-    if log["status_code"] == 200:
-        return log["data"]["img_url"]
-    return "Screenshot loading failed"
-
+    res = my_session.post(url, files=file)
+  
+    return res.text
